@@ -6,7 +6,6 @@
 ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 ## Read Data
-
 activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 features <- read.table("UCI HAR Dataset/features.txt")  
 
@@ -35,6 +34,7 @@ activitylabel <- datay[,-1]
 colnames(dataX) <- features[selected_fea[,1],2]
 
 ##5.Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+library(dplyr)
 colnames(subject_data) <- "subject"
 data <- cbind(dataX, activitylabel, subject_data)
 data_mean <- data %>% group_by(activitylabel, subject) %>% summarize_each(funs(mean))
